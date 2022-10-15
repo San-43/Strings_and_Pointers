@@ -1,24 +1,23 @@
 #include <iostream>
-#include <cstring>
 #include <vector>
 #include <windows.h>
 #include <clocale>
 
-void prinSTR(char str[]);
-void posic(char str[]);
-void reverse(char str[]);
+void prinSTR(std::string str);
+void posic(std::string str);
+void reverse(std::string str);
 
 using namespace std;
 
 int main() {
-    char str[50];
+    string str;
     setlocale(LC_CTYPE, "spanish");
     SetConsoleCP(1252); // Cambiar STDIN -  Para máquinas Windows
     SetConsoleOutputCP(1252); // Cambiar STDOUT - Para máquinas Windows
     system("color 0c");
 
     cout<< "Introduzca una frase: "<< endl;
-    gets(str);
+    getline(cin, str);
 
 
     prinSTR(str);
@@ -35,38 +34,41 @@ int main() {
     return 0;
 }
 
-void prinSTR(char str[]) {
-    char *ptr = &str[0];
+void prinSTR(string str) {
+    char const *ptr = &str[0];
     system("cls");
 
     cout << "La frase es: "<<endl;
-    for (int i = 0; i < strlen(str); ++i) {
+    for (int i = 0; i < str.size(); ++i) {
         cout << *ptr << endl;
         ptr++;
     }
 }
 
-void reverse(char str[]) {
-    char *ptr = &str[strlen(str) - 1];
+void reverse(string str) {
+    char const *ptr = &str[str.size() - 1];
     system("cls");
 
     cout << "La frase al revés es: "<<endl;
-    for (int i = 0; i < strlen(str); ++i) {
+    for (int i = 0; i < str.size(); ++i) {
         cout << *ptr;
         ptr--;
     }
 }
 
-void posic(char str[]) {
-    char *ptr = &str[0];
+void posic(string str) {
+    char const *ptr = &str[0];
     system("cls");
     vector<int> space;
     vector<int> pto;
     vector<int> pto_coma;
     vector<int> coma;
-    int comac = 0, ptoc = 0, spacec= 0, pto_comac = 0;
+    int comac = 0;
+    int ptoc = 0;
+    int spacec = 0;
+    int pto_comac = 0;
 
-    for (int i = 0; i < strlen(str); ++i) {
+    for (int i = 0; i < str.size(); ++i) {
         if (*ptr == ' ') {
             space.push_back(i);
             spacec++;
